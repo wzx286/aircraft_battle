@@ -1,0 +1,112 @@
+*{
+    margin: 0px;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;    
+    background-image: url('../source/img/bg_2.jpg');
+    background-size: 100% 100%;
+    font-size: 12px;
+}
+.game-config,
+.game-introduce,
+.game-start,
+.introduce-part,
+.config-part,
+#myCanvas,
+#score{
+    display: none;
+}
+#content{
+    position: relative;
+    height: auto;
+    color: #fff; 
+    text-align: center;
+}
+.index:before{
+    content:'飞机大战';
+    display: block;
+    font-size: 1rem;
+}
+.index .game-start{
+    position: relative;
+    top: 1rem;
+}
+.index .game-introduce{
+    position: relative;
+    top: 2rem;
+}
+.index .game-config{
+    position: relative;
+    top: 3rem;
+}
+.index .game-start,
+.index .game-introduce,
+.index .game-config{
+    display: block;
+    width: 8rem;
+    height: 1rem;
+    line-height: 1rem;
+    border: 2px solid rgb(241, 239, 239);
+    box-sizing: border-box;
+}
+
+.index0 #myCanvas,
+.index0 #score{
+    display: block;
+}
+.index0 #score{
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+    color: #f00;
+    font-size: 1rem;
+    text-align: right;
+}
+.index1:before{
+    content: '游戏说明';
+    display: block;
+    font-size: 1rem;
+}
+.index1 .introduce-part{
+    display: block;
+    position: relative;
+    top: 1rem;
+    width: 8rem;
+    height: auto;
+    text-align: left;
+    text-indent: 24px;
+    border:2px solid rgb(241, 239, 239);
+    padding: 10px;
+    box-sizing: border-box;
+}
+.index1 .introduce-part .backward{
+    text-align: right;
+}
+.index2:before{
+    content: '游戏设置';
+    display: block;
+    font-size: 1rem;
+}
+.index2 .config-part{
+    display: block;
+    position: relative;
+    top: 1rem;
+    width: 8rem;
+}
+.index2 .config-part .config-details{
+    width: 100%;
+    height: 5rem;
+    border:2px solid rgb(241, 239, 239);   
+}    
+.index2 .config-part .confirm{
+    font-size: 15px;
+}    

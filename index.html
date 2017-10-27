@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="index" id='content'>
+            <div class="game-start">开始游戏</div>
+            <div class="game-introduce">游戏说明</div>
+            <div class="game-config">游戏设置</div>
+            <div class="introduce-part">
+                <span class="info">通过拖动飞机实现飞机移动,飞机子弹为自动发射。您可以通过击落敌机来获取分数，不同敌机的血量不同，击落获得的分数也不同。血量越高的敌机分数越高。</span>
+                <div class="backward">返回</div>
+            </div>
+            <div class="config-part">
+                <div class="config-details"></div>
+                <div class="confirm">确定</div>
+            </div>
+            <canvas id='myCanvas'></canvas>
+            <div id='score'>当前得分:0</div>  
+        </div>
+
+        
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/initialize.js"></script>
+        <script src="js/collision.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/score.js"></script>
+        <script src="js/bullet.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/enemy.js"></script>
+        <script src="js/game.js"></script>
+
+
+
+    </body>
+</html>
