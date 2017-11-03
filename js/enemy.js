@@ -35,7 +35,7 @@ var Enemy  = function (type) {
 
     //爆炸效果计时
     this.boom = function () {
-        boomSound.play();
+        boomSound && boomSound.play();
         if(this.boom_delay-- < 0){
             this.status = 'boomed';
             return;            
