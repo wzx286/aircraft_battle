@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
+        <title>小游戏——飞机大战</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -15,18 +15,44 @@
                 <div class="backward">返回</div>
             </div>
             <div class="config-part">
-                <div class="config-details"></div>
+                <div class="config-details">
+                    <div class="mode">
+                        <div>
+                            <label for="easy-mode">易</label>
+                            <input type="radio" name="mode" id="easy-mode" value='easy'> 
+                        </div>
+                        <div>
+                            <label for="normal-mode">中</label>
+                            <input type="radio" name="mode" id="normal-mode" value="normal">
+                        </div>
+                        <div>
+                            <label for="hard-mode">难</label>
+                            <input type="radio" name="mode" id="hard-mode" value="hard"> 
+                        </div>
+                                               
+                    </div>
+                </div>
                 <div class="confirm">确定</div>
+            </div>
+            <div class="game-over-part">
+                <span class="total-score">您的得分:</span>
+                <div class="game-restart">再玩一次</div>
+                <div class="back-to-menu">返回主菜单</div>
             </div>
             <canvas id='myCanvas'></canvas>
             <div id='score'>当前得分:0</div>  
         </div>
+        <audio src="source/sound/music.mp3" id="bg_music"></audio>
+        <audio src="source/sound/biubiubiu.mp3" id="bullet_sound"></audio>
+        <audio src="source/sound/button.mp3" id="button_sound"></audio>
+        <audio src="source/sound/die.mp3" id="die_sound"></audio>
+        <audio src="source/sound/boom.mp3" id="boom_sound"></audio>
 
-        
+
         <link rel="stylesheet" href="css/style.css">
+        <script src="js/config.js"></script>
         <script src="js/initialize.js"></script>
         <script src="js/collision.js"></script>
-        <script src="js/config.js"></script>
         <script src="js/score.js"></script>
         <script src="js/bullet.js"></script>
         <script src="js/player.js"></script>

@@ -2,7 +2,9 @@
     飞机类(玩家)
 */
 var Player  = function (type) {
-
+    var timeout;
+    var bulletSound = document.getElementById('bullet_sound');
+    var dieSound = document.getElementById('die_sound');
     //初始化
     this.init = function () {
         this.width = CONFIG[type].width * CONFIG["Game"].unit;
@@ -11,8 +13,6 @@ var Player  = function (type) {
         this.posY = document.documentElement.clientHeight - this.height;
         this.ico = new Image();
         this.ico.src = CONFIG[type].ico;
-        this.ico.style.width = this.width;
-        this.ico.style.height = this.height;
         this.live = CONFIG["Game"].live;
         this.status = 'normal';
         this.boomIco = new Image();
@@ -20,8 +20,8 @@ var Player  = function (type) {
         this.boom_delay = 20;
         this.bullets = [];
         this.bulletType = "Bullet-1";
-        this.shootInterval = CONFIG[type].shootInterval; 
-        setInterval(function () {        
+        this.shootInterval = CONFIG[type].shootInterval;
+        timeout = setInterval(function () {        
             this.shoot();
         }.bind(this),this.shootInterval);
     }
@@ -35,7 +35,8 @@ var Player  = function (type) {
     //发射子弹
     this.shoot = function () {
         var bullet = new Bullet(this.bulletType, this.posX, this.posY); 
-        this.bullets.push(bullet);       
+        this.bullets.push(bullet); 
+        bulletSound && (bulletSound.pause(), bulletSound.currentTime = 0.0, bulletSound.play());      
     }
 
     //判断是否击中敌机
@@ -54,11 +55,14 @@ var Player  = function (type) {
         if( this.status === 'normal') {
             this.ico.src = this.boomIco;
             this.status = 'booming';
+            clearInterval(timeout);
+            timeout = null;
             this.boom();
         }
     }
 
     this.boom = function () {
+        dieSound && dieSound.play();
         if(this.boom_delay-- <= 0 && this.status === 'booming') {
             this.status = 'boomed';
             return true;
@@ -73,11 +77,14 @@ var Player  = function (type) {
 
     //在画板中绘出飞机
     this.draw = function (ctx) {
-        if(this.status === 'booming') {
-            if(this.boom())return true;
+        if(this.status === 'booming') {//飞机爆炸
+            if(this.boom()) return true;//飞机已爆炸完
+            
             ctx.drawImage(this.boomIco, this.posX + (this.width - this.boomIco.width)/2, this.posY + (this.height - this.boomIco.height)/2);
             return false;
-        } else if (this.status === 'normal') {
+
+        } else if (this.status === 'normal') {//飞机正常
+
             ctx.drawImage(this.ico, this.posX, this.posY);
             this.bullets.forEach(function(element, i) {
                 element.draw(ctx);
@@ -86,7 +93,7 @@ var Player  = function (type) {
                 }
             }, this);
             return false;
-        } else
+        } else//飞机已爆炸完
             return true;
     } 
 

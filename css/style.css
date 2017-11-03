@@ -20,8 +20,10 @@ body{
 .game-start,
 .introduce-part,
 .config-part,
+.game-over-part,
 #myCanvas,
-#score{
+#score,
+audio{
     display: none;
 }
 #content{
@@ -103,10 +105,50 @@ body{
     width: 8rem;
 }
 .index2 .config-part .config-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     height: 5rem;
     border:2px solid rgb(241, 239, 239);   
+}
+.index2 .config-part .config-details .mode:before{
+    content: '难度:';
 }    
+.index2 .config-part .config-details .mode{
+    margin-top: 5px;
+    width: 100%;
+    height: 1rem;
+    font-size: 0.5rem;
+}    
+.index2 .config-part .config-details .mode>div{
+    display: inline-block;
+}
 .index2 .config-part .confirm{
     font-size: 15px;
-}    
+}  
+.index3:before{
+    content: '游戏结束';
+    display: block;
+    font-size: 1rem;
+}
+.index3 .game-over-part{
+    display: block;
+    top: 1rem;
+    width: 8rem;
+} 
+.index3 .game-over-part span{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.6rem;    
+}
+.index3 .game-over-part div{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    margin-top: 1rem;
+    border: 2px solid rgb(241, 239, 239);
+}
+

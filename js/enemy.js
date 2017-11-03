@@ -2,7 +2,7 @@
     飞机类(敌人)
 */
 var Enemy  = function (type) {
-
+    var boomSound = document.getElementById('boom_sound');
     //初始化
     this.init = function () {
         this.width = CONFIG[type].width * CONFIG["Game"].unit;
@@ -35,6 +35,7 @@ var Enemy  = function (type) {
 
     //爆炸效果计时
     this.boom = function () {
+        boomSound.play();
         if(this.boom_delay-- < 0){
             this.status = 'boomed';
             return;            

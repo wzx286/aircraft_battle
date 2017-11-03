@@ -4,7 +4,7 @@
 var Game = function () {
 
     var scoreArea = document.getElementById('score');
-
+    var bgMusic = document.getElementById('bg_music');
     this.init = function () {
         this.width = document.documentElement.clientWidth;
         this.height = document.documentElement.clientHeight;
@@ -15,6 +15,7 @@ var Game = function () {
         this.canvas.width = this.width;
         this.canvas.height = this.height; 
         this.score = new Score();
+        bgMusic && (bgMusic.play(), bgMusic.loop = true);
         //根据游戏难度调整敌机数量
         this.enemies = (function (CONFiG) {
             switch(CONFiG["Game"].mode.toLowerCase()) {
@@ -22,7 +23,7 @@ var Game = function () {
                     return new Array(CONFiG["Game"].minEnemy);
                     break;
                 case "normal":
-                    return new Array(~~((CONFiG["Game"].minEnemy+CONFiG["Game"].maxEnemy)/2));
+                    return new Array(~~((CONFiG["Game"].minEnemy + CONFiG["Game"].maxEnemy)/2));
                     break;
                 case "hard":
                     return new Array(CONFiG["Game"].maxEnemy);
@@ -55,6 +56,20 @@ var Game = function () {
         }
     }
 
+    this.getScore = function () {
+        return this.score.getScore();
+    }
+
+    this.hasOver = function () {
+        // return this.over;
+        // this.emit('gameover');        
+        var content = document.getElementById('content');
+        var eve = document.createEvent('HTMLEvents');
+        eve.initEvent('gameover');
+        document.dispatchEvent(eve); 
+        bgMusic && (bgMusic.pause(), bgMusic.currentTime = 0.0);
+    }
+
     var requestAnimationFrame = window.requestAnimationFrame 
                             || window.webkitRequestAnimationFrame
                             || window.msRequestAnimationFrame
@@ -66,7 +81,8 @@ var Game = function () {
     this.draw = function () {    
         this.ctx.drawImage(this.background, 0, 0);
         if(this.player.draw(this.ctx)) {
-            alert("游戏结束!");       
+            //游戏结束
+            this.hasOver();      
             return;
         }
         for( let len = this.enemies.length-1; len >= 0; len --) {
